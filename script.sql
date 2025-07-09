@@ -41,5 +41,6 @@ CREATE TABLE IF NOT EXISTS producto (
     nombre varchar(30),
     stock int,
     monto NUMERIC(10, 2),
-    idcategoria int
+    idcategoria int,
+    idfamilia int
 );

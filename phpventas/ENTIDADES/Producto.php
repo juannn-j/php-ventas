@@ -5,6 +5,7 @@ class Producto
     private $nombre;
     private $stock;
     private $monto;
+    private $idfamilia;
     private $idcategoria;
 
     public function getIdProducto()
@@ -46,7 +47,14 @@ class Producto
     {
         $this->monto = $monto;
     }
-
+    public function getIdFamilia()
+    {
+        return $this->idfamilia;
+    }
+    public function setIdFamilia($idfamilia)
+    {
+        $this->idfamilia = $idfamilia;
+    }
     public function getIdCategoria()
     {
         return $this->idcategoria;

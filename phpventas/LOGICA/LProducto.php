@@ -9,11 +9,12 @@ class LProducto implements IProducto
         $db = new DB();
         $cn = $db->conectar();
         $sql =
-            "insert into producto (nombre, stock, monto, idcategoria) values (:nom, :stc, :mnt, :idct)";
+            "insert into producto (nombre, stock, monto, idfamilia, idcategoria) values (:nom, :stc, :mnt, :idfa, :idct)";
         $ps = $cn->prepare($sql);
         $ps->bindParam(":nom", $producto->getNombre());
         $ps->bindParam(":stc", $producto->getStock());
         $ps->bindParam(":mnt", $producto->getMonto());
+        $ps->bindParam(":idfa", $producto->getIdFamilia());
         $ps->bindParam(":idct", $producto->getIdCategoria());
         $ps->execute();
     }
@@ -26,14 +27,15 @@ class LProducto implements IProducto
         $ps = $cn->prepare($sql);
         $ps->execute();
         $filas = $ps->fetchAll();
-        $productos = array();
+        $productos = [];
         foreach ($filas as $p) {
             $prod = new Producto();
             $prod->setIdProducto($p[0]);
             $prod->setNombre($p[1]);
             $prod->setStock($p[2]);
             $prod->setMonto($p[3]);
-            $prod->setIdCategoria($p[4]);
+            $prod->setIdFamilia($p[4]);
+            $prod->setIdCategoria($p[5]);
             array_push($productos, $prod);
         }
         return $productos;
