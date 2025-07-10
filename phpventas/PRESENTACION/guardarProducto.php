@@ -1,3 +1,19 @@
+<?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+require_once "../LOGICA/LProducto.php";
+require_once "../ENTIDADES/Producto.php";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $log = new LProducto();
+    $prod = new Producto();
+    $prod->setNombre($_POST["txtNom"]);
+    $prod->setStock($_POST["txtSto"]);
+    $prod->setMonto($_POST["txtMon"]);
+    $prod->setIdFamilia($_POST["cbxFam"]);
+    $prod->setIdCategoria($_POST["cbxCat"]);
+    $log->guardar($prod);
+    // header(header: 'Location: cargarcategorias.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,38 +54,19 @@
                 <?php }
                 ?>
             </select>
-            <input type="submit" value="Guardar">
+                <input type="submit" value="Guardar">
         </form>
+        <button>cargar</button>
    </div>
    <div id="res"></div>
 </body>
 </html>
 <script>
-    $('#cbxFam').change(function(){
-        idfam=$('#cbxFam').val();
-        param={'idfam':idfam};
-        $.ajax({
-            url:'respuestaCategorias1.php',
-            data:param,
-            type:'get',
-            success:function(res){
-                $('#res').html(res);
-            }
-        });
-    });
+$("button").click(function(){
+  $.ajax({
+    url: "cargarProducto.php",
+    success: function(res){
+      $("#res").html(res);
+  }});
+});
 </script>
-<?php
-require_once "../LOGICA/LProducto.php";
-if ($_POST) {
-    $prod = new Producto();
-    $prod->setNombre($_POST["txtNom"]);
-    $prod->setStock($_POST["txtSto"]);
-    $prod->setMonto($_POST["txtNom"]);
-    $prod->setIdFamilia($_POST["cbxFam"]);
-    $prod->setIdCategoria($_POST["cbxCat"]);
-    $log = new LProducto();
-    $log->guardar($prod);
-    // header(header: 'Location: cargarcategorias.php');
-}
-
-?>

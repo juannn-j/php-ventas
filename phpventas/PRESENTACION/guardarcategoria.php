@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    
+
     <?php
-        require_once '../logica/LCategoria.php';
-        require_once '../logica/LFamilia.php';
+    require_once "../LOGICA/LCategoria.php";
+    require_once "../LOGICA/LFamilia.php";
     ?>
 
     <div>
@@ -20,13 +20,11 @@
             <select name="cbxFam" id="cbxFam">
                 <option>Seleccione Familia</option>
                 <?php
-                    $logFamilia=new LFamilia();
-                    $familias=$logFamilia->cargar();
-                    foreach($familias as $fam){
-                ?>
-                <option value="<?=$fam->getIdFamilia()?>"><?=$fam->getNombre()?></option>
-                <?php
-                    }
+                $logFamilia = new LFamilia();
+                $familias = $logFamilia->cargar();
+                foreach ($familias as $fam) { ?>
+                <option value="<?= $fam->getIdFamilia() ?>"><?= $fam->getNombre() ?></option>
+                <?php }
                 ?>
             </select>
             <input type="submit" value="Guardar">
@@ -37,13 +35,12 @@
 
 </body>
 </html>
-<?php
-    if($_POST){
-        $cat=new Categoria();
-        $cat->setNombre($_POST['txtNom']);
-        $cat->setIdFamilia($_POST['cbxFam']);
-        $log=new LCategoria();
-        $log->guardar($cat);
-        // header(header: 'Location: cargarcategorias.php');
-    }
+<?php if ($_POST) {
+    $cat = new Categoria();
+    $cat->setNombre($_POST["txtNom"]);
+    $cat->setIdFamilia($_POST["cbxFam"]);
+    $log = new LCategoria();
+    $log->guardar($cat);
+    // header(header: 'Location: cargarcategorias.php');
+}
 ?>

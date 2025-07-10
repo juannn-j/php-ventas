@@ -16,6 +16,7 @@
                     <th>NOMBRE</th>
                     <th>STOCK</th>
                     <th>MONTO</th>
+                    <th>ID FAMILIA</th>
                     <th>ID CATEGORIA</th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td><?= $producto->getNombre() ?></td>
                     <td><?= $producto->getStock() ?></td>
                     <td><?= $producto->getMonto() ?></td>
+                    <td><?= $producto->getIdFamilia() ?></td>
                     <td><?= $producto->getIdCategoria() ?></td>
                 </tr>
                 <?php }
@@ -36,5 +38,6 @@
             </tbody>
         </table>
     </div>
+    <div id="res"></div>
 </body>
 </html>

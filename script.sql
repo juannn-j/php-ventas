@@ -1,4 +1,3 @@
--- Tabla Familia
 CREATE TABLE IF NOT EXISTS familia (
     idfamilia SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
@@ -8,7 +7,6 @@ CREATE TABLE IF NOT EXISTS familia (
 INSERT INTO familia (nombre, descripcion) VALUES ('Bebidas', 'Todo bebidas');
 INSERT INTO familia (nombre, descripcion) VALUES ('Lácteos', 'Todo lácteos');
 
--- Tabla Cliente
 CREATE TABLE IF NOT EXISTS cliente (
     idcliente SERIAL PRIMARY KEY,
     nombres VARCHAR(50) NOT NULL,
